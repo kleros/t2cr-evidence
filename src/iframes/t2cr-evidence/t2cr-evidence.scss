@@ -60,7 +60,6 @@
     &-card {
       border: 1px solid #ccc;
       border-radius: 5px;
-      box-shadow: 0 3px 6px rgba(201, 201, 201, 0.5);
       display: flex;
       overflow: hidden;
       padding: 23px;
@@ -68,7 +67,7 @@
       width: 100%;
 
       &:hover {
-        box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0 3px 6px rgba(201, 201, 201, 0.5);
       }
     }
 
