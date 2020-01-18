@@ -1,20 +1,39 @@
-import Eth from 'ethjs'
-import Web3 from 'web3'
+import { ethers } from 'ethers'
+import { useEffect, useState } from 'react'
 
 const env = process.env.NODE_ENV === 'production' ? 'PROD' : 'DEV'
 const ETHEREUM_PROVIDER = process.env[`REACT_APP_${env}_ETHEREUM_PROVIDER`]
-const IPFS_URL = process.env[`REACT_APP_${env}_IPFS_URL`]
+const IPFS_URL = process.env[`REACT_APP_IPFS_URL`]
 const S3_URL = process.env[`REACT_APP_${env}_S3_URL`]
 const T2CR_URL = process.env[`REACT_APP_${env}_T2CR_URL`]
 
-let eth
-if (process.env.NODE_ENV === 'test')
-  eth = new Eth(require('ganache-cli').provider())
-else if (window.ethereum) eth = new Eth(window.ethereum)
-else if (window.web3 && window.web3.currentProvider)
-  eth = new Eth(window.web3.currentProvider)
-else eth = new Eth(new Eth.HttpProvider(ETHEREUM_PROVIDER))
+const useProvider = () => {
+  const [error, setError] = useState(false)
+  const [provider, setProvider] = useState()
 
-const web3 = new Web3('http://localhost:8545')
+  useEffect(() => {
+    ;(async () => {
+      if (provider) return
+      try {
+        if (window.web3 && window.web3.currentProvider && window.ethereum) {
+          window.ethereum.enable
+            ? await window.ethereum.enable()
+            : await window.ethereum.sendAsync({
+                method: 'eth_requestAccounts',
+                params: []
+              })
+          setProvider(new ethers.providers.Web3Provider(window.ethereum))
+        } else if (ETHEREUM_PROVIDER) {
+          setProvider(new ethers.providers.JsonRpcProvider(ETHEREUM_PROVIDER))
+        } else setError('No ethereum provider available.')
+      } catch (err) {
+        setError('Error setting up provider')
+        console.error(err)
+      }
+    })()
+  }, [provider])
 
-export { eth, IPFS_URL, S3_URL, T2CR_URL, web3 }
+  return { provider, error, IPFS_URL, S3_URL, T2CR_URL }
+}
+
+export default useProvider
