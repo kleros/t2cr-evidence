@@ -14,9 +14,8 @@ T2CR Evidence Display.
 ## Get Started
 
 1.  Clone this repo.
-2.  Install and set up the [MetaMask](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en) chrome extension.
-3.  Configure MetaMask on the Kovan Test Network.
-4.  Run `yarn` to install dependencies and then `yarn start` to start the dev server.
+2.  Duplicate `.env.example`, rename the copy to `.env` and fill in the missing variables.
+3.  Run `yarn` to install dependencies and then `yarn start` to start the dev server.
 
 ## Other Scripts
 
@@ -28,4 +27,3 @@ T2CR Evidence Display.
 - `yarn run lint` - Lint the entire project's .scss and .js files.
 - `yarn run cz` - Run commitizen.
 - `yarn run build` - Create a production build.
-- `yarn run build:analyze` - Analyze the production build using source-map-explorer.
