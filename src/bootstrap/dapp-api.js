@@ -23,9 +23,9 @@ const useProvider = () => {
                 params: []
               })
           setProvider(new ethers.providers.Web3Provider(window.ethereum))
-        } else if (ETHEREUM_PROVIDER) {
+        } else if (ETHEREUM_PROVIDER)
           setProvider(new ethers.providers.JsonRpcProvider(ETHEREUM_PROVIDER))
-        } else setError('No ethereum provider available.')
+        else setError('No ethereum provider available.')
       } catch (err) {
         setError('Error setting up provider')
         console.error(err)

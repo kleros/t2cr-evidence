@@ -19,11 +19,5 @@ T2CR Evidence Display.
 
 ## Other Scripts
 
-- `yarn run prettify` - Apply prettier to the entire project.
-- `yarn run lint:scss` - Lint the entire project's .scss files.
-- `yarn run lint:js` - Lint the entire project's .js files.
-- `yarn run lint:scss --fix` - Fix fixable linting errors in .scss files.
-- `yarn run lint:js --fix` - Fix fixable linting errors in .js files.
-- `yarn run lint` - Lint the entire project's .scss and .js files.
-- `yarn run cz` - Run commitizen.
+- `yarn run format` - To lint and fix autofixable code formatting issues.
 - `yarn run build` - Create a production build.
